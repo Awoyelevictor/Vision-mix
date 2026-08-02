@@ -16,6 +16,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onSaveConfig,
 }) => {
   const [eventName, setEventName] = useState(config.eventName);
+  const [projectorAlertMessage, setProjectorAlertMessage] = useState(config.projectorAlertMessage || '');
   const [eventLogoUrl, setEventLogoUrl] = useState<string | null>(config.eventLogoUrl || null);
   const [targetResolution, setTargetResolution] = useState(config.targetResolution);
   const [targetFps, setTargetFps] = useState<30 | 60>(config.targetFps);
@@ -46,6 +47,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   const handleSave = () => {
     onSaveConfig({
       eventName,
+      projectorAlertMessage,
       eventLogoUrl,
       targetResolution,
       targetFps,
@@ -142,6 +144,22 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 />
                 <p className="mt-1.5 text-xs text-zinc-500">
                   This title appears on top of the live output monitor and projector screen.
+                </p>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-2">
+                  Projector Marquee Alert
+                </label>
+                <input
+                  type="text"
+                  value={projectorAlertMessage}
+                  onChange={(e) => setProjectorAlertMessage(e.target.value)}
+                  placeholder="e.g. Please silient your mobile phones during the service."
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                />
+                <p className="mt-1.5 text-xs text-zinc-500">
+                  Scrolling message that appears at the bottom of the projector output.
                 </p>
               </div>
 

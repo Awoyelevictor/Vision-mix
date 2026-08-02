@@ -88,9 +88,9 @@ export const ProjectorView: React.FC = () => {
       onClick={toggleFullscreen}
       className="fixed inset-0 w-screen h-screen bg-black flex items-center justify-center cursor-pointer overflow-hidden select-none relative"
     >
-      {/* Optional Event Logo Watermark Overlay */}
+      {/* Optional Event Logo Watermark Overlay - Positioned Top Right */}
       {(config?.eventLogoUrl || config?.eventName) && (
-        <div className="absolute top-6 left-6 z-20 flex items-center gap-3 bg-black/60 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/10 shadow-2xl pointer-events-none">
+        <div className="absolute top-6 right-6 z-20 flex items-center gap-3 bg-black/60 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/10 shadow-2xl pointer-events-none">
           {config.eventLogoUrl && (
             <img
               src={config.eventLogoUrl}
@@ -106,28 +106,36 @@ export const ProjectorView: React.FC = () => {
         </div>
       )}
 
+      {/* Marquee Alert Message Overlay - Positioned Bottom */}
+      {config?.projectorAlertMessage && (
+        <div className="absolute bottom-0 left-0 w-full z-30 bg-red-600/90 backdrop-blur-sm py-3 border-t border-red-500 overflow-hidden pointer-events-none">
+          <div className="flex whitespace-nowrap animate-marquee">
+            <span className="text-white font-black text-2xl uppercase tracking-tighter px-4">
+              {config.projectorAlertMessage} • {config.projectorAlertMessage} • {config.projectorAlertMessage} • {config.projectorAlertMessage}
+            </span>
+            <span className="text-white font-black text-2xl uppercase tracking-tighter px-4">
+              {config.projectorAlertMessage} • {config.projectorAlertMessage} • {config.projectorAlertMessage} • {config.projectorAlertMessage}
+            </span>
+          </div>
+        </div>
+      )}
+
       {remoteStream ? (
         <video
           ref={videoRef}
           autoPlay
           playsInline
-          className="w-full h-full object-contain bg-black transition-opacity duration-300"
+          className="w-full h-full object-cover bg-black transition-opacity duration-300"
         />
       ) : frameBlob ? (
         <img
           src={frameBlob}
           alt="Live Stream"
-          className="w-full h-full object-contain bg-black transition-opacity duration-300"
+          className="w-full h-full object-cover bg-black transition-opacity duration-300"
         />
       ) : (
         /* Clean minimal waiting screen for projector display */
-        <div className="flex flex-col items-center justify-center gap-3 text-zinc-700 font-mono text-sm animate-pulse">
-          <div className="w-12 h-12 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-600 font-bold text-xl">
-            V
-          </div>
-          <span>VISIONMIX • WAITING FOR LIVE CAMERA</span>
-          <span className="text-xs text-zinc-800 font-sans">Click or press F for fullscreen</span>
-        </div>
+        <div className="w-full h-full bg-black" />
       )}
     </div>
   );

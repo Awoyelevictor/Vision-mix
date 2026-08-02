@@ -39,6 +39,7 @@ export interface StudioConfig {
   tallyEnabled: boolean;
   audioEnabled: boolean;
   activeAudioCameraId: string | null; // Audio source (defaults to active camera or explicit mic)
+  projectorAlertMessage?: string | null;
 }
 
 export interface WebRTCSignalData {

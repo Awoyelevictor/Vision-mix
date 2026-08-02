@@ -43,6 +43,7 @@ export const StudioDashboard: React.FC<StudioDashboardProps> = ({
     tallyEnabled: true,
     audioEnabled: true,
     activeAudioCameraId: null,
+    projectorAlertMessage: '',
   });
 
   const [remoteStreams, setRemoteStreams] = useState<Map<string, MediaStream>>(new Map());
