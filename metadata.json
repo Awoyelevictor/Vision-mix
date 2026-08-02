@@ -1,0 +1,11 @@
+{
+  "name": "VisionMix",
+  "description": "Modern wireless multi-camera live production platform for churches, conferences, schools, and live events.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
